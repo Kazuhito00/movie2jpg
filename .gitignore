@@ -37,6 +37,9 @@ MANIFEST
 pip-log.txt
 pip-delete-this-directory.txt
 
+# bat
+*.bat
+
 # Unit test / coverage reports
 htmlcov/
 .tox/
@@ -127,3 +130,8 @@ dmypy.json
 
 # Pyre type checker
 .pyre/
+
+# jpg, movie
+jpg/
+movie/
+*.mp4
