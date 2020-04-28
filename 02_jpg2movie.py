@@ -94,7 +94,7 @@ def main():
         writer.write(resize_frame)
 
         if is_display:
-            cv.imshow('movie2jpg', resize_frame)
+            cv.imshow('jpg', resize_frame)
 
             # FPS調整 ###########################################################
             elapsed_time = time.time() - start_time
