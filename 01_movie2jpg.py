@@ -2,7 +2,7 @@
 # -*- coding: utf-8 -*-
 """
 [summary]
-  Webカメラ、動画の各フレームをjpgとして保存する
+  Webカメラ、動画の各フレームを連番jpgとして保存する
 [description]
   -
 """
@@ -84,6 +84,7 @@ def main():
         path_image_file = os.path.join(path_save_image,
                                        '{:06}.jpg'.format(capture_count))
         cv.imwrite(path_image_file, resize_frame)
+        # print(path_image_file)
 
         capture_count += 1
 
@@ -91,16 +92,16 @@ def main():
         if is_display:
             cv.imshow('movie2jpg', resize_frame)
 
-        # FPS調整 ##############################################################
-        elapsed_time = time.time() - start_time
-        sleep_time = int((1000 / fps) - (elapsed_time * 1000))
-        if sleep_time <= 0:
-            sleep_time = 1
+            # FPS調整 ##########################################################
+            elapsed_time = time.time() - start_time
+            sleep_time = int((1000 / fps) - (elapsed_time * 1000))
+            if sleep_time <= 0:
+                sleep_time = 1
 
-        # キー入力(ESC:プログラム終了) #########################################
-        key = cv.waitKey(sleep_time)
-        if key == 27:  # ESC
-            break
+            # キー入力(ESC:プログラム終了) ######################################
+            key = cv.waitKey(sleep_time)
+            if key == 27:  # ESC
+                break
 
 
 if __name__ == '__main__':

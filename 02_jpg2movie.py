@@ -2,7 +2,7 @@
 # -*- coding: utf-8 -*-
 """
 [summary]
-  Webカメラ、動画の各フレームをjpgとして保存する
+  連番のjpg画像を動画として保存する
 [description]
   -
 """
@@ -25,13 +25,13 @@ def get_args():
 
     parser = argparse.ArgumentParser()
 
-    parser.add_argument(
-        "--filepath", help='camera device number or movie path', default='jpg')
+    parser.add_argument("--filepath", help='jpg path', default='jpg')
     parser.add_argument(
         "--resize_rate", help='resize rate', type=float, default=1.0)
     parser.add_argument(
         "--display", help='display imshow', type=bool, default=False)
     parser.add_argument("--fps", help='capture fps', type=int, default=30)
+    parser.add_argument("--fourcc", help='fourcc', default='mp4v')
 
     args = parser.parse_args()
 
@@ -52,6 +52,7 @@ def main():
     resize_rate = args.resize_rate
     is_display = args.display
     fps = args.fps
+    fourcc = args.fourcc
 
     # ファイル読み込み準備 ######################################################
     cap = cv.VideoCapture(os.path.join(filepath, '%06d.jpg'))
@@ -69,10 +70,11 @@ def main():
         exit()
     frame_h, frame_w = frame.shape[:2]
 
-    fourcc = cv.VideoWriter_fourcc(*"DIVX")
+    writer_fourcc = cv.VideoWriter_fourcc(*fourcc)
     writer = cv.VideoWriter(
-        os.path.join(path_save_movie, '{:06}.avi'.format(capture_count)),
-        fourcc, fps, (int(frame_w * resize_rate), int(frame_h * resize_rate)))
+        os.path.join(path_save_movie,
+                     '{:06}.mp4'.format(capture_count)), writer_fourcc, fps,
+        (int(frame_w * resize_rate), int(frame_h * resize_rate)))
 
     # 1フレーム目書き込み #######################################################
     resize_frame = cv.resize(
@@ -94,7 +96,7 @@ def main():
         writer.write(resize_frame)
 
         if is_display:
-            cv.imshow('movie2jpg', resize_frame)
+            cv.imshow('jpg2movie', resize_frame)
 
             # FPS調整 ###########################################################
             elapsed_time = time.time() - start_time
