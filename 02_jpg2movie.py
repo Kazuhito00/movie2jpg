@@ -10,6 +10,7 @@
 import os
 import argparse
 import time
+from distutils.util import strtobool
 
 import cv2 as cv
 
@@ -29,8 +30,8 @@ def get_args():
     parser.add_argument(
         "--resize_rate", help='resize rate', type=float, default=1.0)
     parser.add_argument(
-        "--display", help='display imshow', type=bool, default=False)
-    parser.add_argument("--fps", help='capture fps', type=int, default=30)
+        "--display", help='display imshow', type=strtobool, default=0)
+    parser.add_argument("--fps", help='capture fps', type=float, default=29.97)
     parser.add_argument("--fourcc", help='fourcc', default='mp4v')
 
     args = parser.parse_args()
@@ -95,7 +96,7 @@ def main():
         # フレーム書き込み #######################################################
         writer.write(resize_frame)
 
-        if is_display:
+        if is_display == 1:
             cv.imshow('jpg2movie', resize_frame)
 
             # FPS調整 ###########################################################

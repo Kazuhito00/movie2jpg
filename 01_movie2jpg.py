@@ -10,6 +10,7 @@
 import os
 import argparse
 import time
+from distutils.util import strtobool
 
 import cv2 as cv
 
@@ -32,7 +33,7 @@ def get_args():
     parser.add_argument("--cwidth", help='capture width', type=int)
     parser.add_argument("--cheight", help='capture height', type=int)
     parser.add_argument(
-        "--display", help='display imshow', type=bool, default=True)
+        "--display", help='display imshow', type=strtobool, default=1)
     parser.add_argument("--fps", help='capture fps', type=int, default=30)
 
     args = parser.parse_args()
@@ -89,7 +90,7 @@ def main():
         capture_count += 1
 
         # 書き込み画像描画 ######################################################
-        if is_display:
+        if is_display == 1:
             cv.imshow('movie2jpg', resize_frame)
 
             # FPS調整 ##########################################################
