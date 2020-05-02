@@ -39,7 +39,7 @@ python 02_jpg2movie.py --filepath='jpg' --fps=10
 --filepath：連番jpgの格納パス（デフォルトは'jpg'）<br>
 --resize_rate：動画保存時の画像サイズ比率（デフォルトは1.0倍）<br>
 --display：キャプチャしている画像をGUI表示するか否か（False）<br>
---fps：保存動画のFPS（デフォルトは30）<br>
+--fps：保存動画のFPS（デフォルトは29.97）<br>
 --fourcc：動画の保存形式（デフォルトは'mp4v'）
 
 ### フォルダ内のファイルを000000.jpgから始まる連番にリネーム
