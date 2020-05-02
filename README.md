@@ -29,6 +29,8 @@ python 01_movie2jpg.py --filepath='sample.mp4' --display=False
 --filepath：動画のファイルパス or Webカメラのデバイスナンバー<br>
 --resize_rate：jpg保存時の画像サイズ比率（デフォルトは1.0倍）<br>
 --display：キャプチャしている画像をGUI表示するか否か（デフォルトはTrue）<br>
+--skip：動画フレーム取得の際に間引いて取得する枚数（デフォルトは0）<br>
+　　　　例）skip=2を指定した場合は、1、4、7フレーム目……を保存する
 
 ### 連番jpgから動画を保存
 以下を実行すると、指定フォルダの連番jpgから動画を作成し「movie」フォルダに保存します<br>
