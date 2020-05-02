@@ -35,6 +35,7 @@ def get_args():
     parser.add_argument(
         "--display", help='display imshow', type=strtobool, default=1)
     parser.add_argument("--fps", help='capture fps', type=int, default=30)
+    parser.add_argument("--skip", type=int, default=0)
 
     args = parser.parse_args()
 
@@ -55,6 +56,7 @@ def main():
     resize_rate = args.resize_rate
     is_display = args.display
     fps = args.fps
+    skip_number = args.skip
 
     # カメラ or 動画準備 #######################################################
     cap = cv.VideoCapture(filepath)
@@ -70,6 +72,8 @@ def main():
     # 画像ファイル名用番号
     capture_count = len(os.listdir(path_save_image))
 
+    skip_count = 0
+
     while True:
         start_time = time.time()
 
@@ -77,6 +81,13 @@ def main():
         ret, frame = cap.read()
         if not ret:
             break
+
+        if skip_number > skip_count:
+            skip_count += 1
+            continue
+        else:
+            skip_count = 0
+
         frame_h, frame_w = frame.shape[:2]
         resize_frame = cv.resize(
             frame, (int(frame_w * resize_rate), int(frame_h * resize_rate)))
