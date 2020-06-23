@@ -138,4 +138,5 @@ dmypy.json
 jpg/
 jpg_/
 movie/
+_old/
 *.mp4
