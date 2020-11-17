@@ -26,14 +26,19 @@ def get_args():
 
     parser = argparse.ArgumentParser()
 
-    parser.add_argument(
-        "--filepath", help='camera device number or movie path', default=0)
-    parser.add_argument(
-        "--resize_rate", help='resize rate', type=float, default=1.0)
+    parser.add_argument("--filepath",
+                        help='camera device number or movie path',
+                        default=0)
+    parser.add_argument("--resize_rate",
+                        help='resize rate',
+                        type=float,
+                        default=1.0)
     parser.add_argument("--cwidth", help='capture width', type=int)
     parser.add_argument("--cheight", help='capture height', type=int)
-    parser.add_argument(
-        "--display", help='display imshow', type=strtobool, default=1)
+    parser.add_argument("--display",
+                        help='display imshow',
+                        type=strtobool,
+                        default=1)
     parser.add_argument("--fps", help='capture fps', type=int, default=30)
     parser.add_argument("--skip", type=int, default=0)
 
