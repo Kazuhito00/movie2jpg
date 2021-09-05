@@ -24,6 +24,7 @@ def get_args():
     parser = argparse.ArgumentParser()
 
     parser.add_argument("--folderpath", help='jpg path', default='jpg')
+    parser.add_argument("--start", type=int, default=0)
 
     args = parser.parse_args()
 
@@ -41,6 +42,7 @@ def main():
     # 引数解析 #################################################################
     args = get_args()
     folderpath = args.folderpath
+    start_num = args.start
 
     folderpath = os.path.join(os.getcwd(), folderpath)
 
@@ -54,8 +56,9 @@ def main():
     for i, filepath in enumerate(files):
         os.rename(
             filepath,
-            os.path.join(folderpath,
-                         '{:06}'.format(i) + os.path.splitext(filepath)[-1]))
+            os.path.join(
+                folderpath, '{:06}'.format(i + start_num) +
+                os.path.splitext(filepath)[-1]))
 
 
 if __name__ == '__main__':
